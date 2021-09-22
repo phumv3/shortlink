@@ -1,0 +1,12 @@
+<%= render :partial => 'head' %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-offset-3 col-lg-6">
+      <%= link_to "List Account", user_accounts_path(@user.id) %>
+      <br/>
+      <%= link_to "List Transaction", user_transactions_path(@user.id) %>
+      <br/>
+      <%= link_to "List Urls", user_urls_path(@user.id) %>
+    </div>
+  </div>
+</div>

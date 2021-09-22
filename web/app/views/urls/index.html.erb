@@ -1,0 +1,50 @@
+<%= render :partial => 'users/head' %>
+<% flash.each do |type, msg| %>
+  <div class="alert alert-info">
+    <%= msg %>
+  </div>
+<% end %>
+<div class="container">
+  <div>
+  <%= link_to 'New Url', new_user_url_path(@user.id), :class => 'btn icon-btn btn-success ' %>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 15px;">#</th>
+        <% @headers.each do |key, name| %>
+          <%= content_tag('th', name) %>
+        <% end %>
+      </tr>
+      <i class="fas fa-edit"></i>
+    </thead>
+    <tbody>
+      <% @urls.each do |url| -%>
+        <tr id="url-<%= url.id %>" class="list issue odd-even">
+          <td class="buttons">
+          <%= link_to 'Edit', edit_user_url_path(:user_id => @user, :id => url.id),
+                      :title => 'Edit',
+                      :class => 'fas fa-edit' %>
+          <%= link_to 'Delete', user_url_path(:user_id => @user, :id => url.id),
+                      :data => {:confirm => 'Are you sure to delete?'},
+                      :method => :delete,
+                      :title => 'Delete',
+                      :class => 'icon-only icon-del' %>
+          </td>
+          <% @headers.each do |key, name| %>
+          <% if (key == :short_url)
+          		value = (request.protocol + request.host + ":" + request.port.to_s) + "/" + url[key]
+          	else value = url[key]
+          	end
+          	if key == :long_url
+          		title = url[key]
+          	else title = ""
+          	end
+          %>
+            <%= content_tag('td', value, title: title) %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

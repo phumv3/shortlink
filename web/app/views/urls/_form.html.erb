@@ -1,0 +1,14 @@
+<div id="url_form">
+  <!-- <div class="form-group">
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Enter name", value: @url.name %>
+  </div> -->
+  <div class="form-group">
+    <%= f.label :long_url, "Original Url" %>
+    <%= f.text_area :long_url, class: "form-control", placeholder: "Enter Url", value: @url.long_url %>
+  </div>
+  <div class="form-group" hidden>
+    <%= f.label :user_id, "user_id" %>
+    <%= f.text_field :user_id, class: "form-control", value: @user.id %>
+  </div>
+</div>

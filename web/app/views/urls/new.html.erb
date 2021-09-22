@@ -1,0 +1,23 @@
+<%= render :partial => 'users/head' %>
+<% flash.each do |type, msg| %>
+  <div class="alert alert-info">
+    <%= msg %>
+  </div>
+<% end %>
+<div class="container">
+  <div class="row">
+    <h1 class="title">New Url</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-offset-3 col-lg-6">
+      <%= form_with model: @url, url: user_urls_path(:user_id => @user.id, :id => @url.id), method: :post, :html => {:multipart => true} do |f| %>
+        <%= render :partial => 'form', :locals => {:f => f, :url => @url, :from => "new"} %>
+        <div class="form-group">
+          <div class="col-lg-offset-4">
+            <%= f.submit "Submit", class: "btn btn-success" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
